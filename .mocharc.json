@@ -1,0 +1,8 @@
+{
+  "reporter": "mochawesome",
+  "reporterOption": [
+    "reportFilename=index",
+    "reportDir=./reports",
+    "charts=true"
+  ]
+}
