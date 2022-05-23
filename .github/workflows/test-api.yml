@@ -1,0 +1,46 @@
+name: Mocha Chai tests
+on:
+  push:
+    branches: [ main ]
+jobs:
+  test-api:
+    runs-on: ubuntu-latest
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Install Node
+      - name: Install Node
+        uses: actions/setup-node@v3.1.1
+        with:
+          node-version: "16.x"
+
+      # Install project packages
+      - name: Install Packages
+        run: |
+          npm install
+
+      # Make directory to upload test reports
+      - name: Make Directory
+        run: mkdir -p reports
+        
+      # Run tests
+      - name: Run Tests
+        run: |
+          npm test
+          
+      # Upload the contents of reports directory to workspace
+      - name: Upload Reports
+        uses: actions/upload-artifact@v3.0.0
+        if: always()
+        with:
+          name: RunReports
+          path: reports
+          
+      # Deploy to GitHub Pages
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@v4.3.3
+        if: always()
+        with:
+          branch: gh-pages
+          folder: reports
