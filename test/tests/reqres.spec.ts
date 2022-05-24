@@ -87,7 +87,7 @@ describe('ReqRes API', () => {
     expect(response.data).to.be.an('object').that.is.empty;
   });
 
-  it('Get to /colors should return status 200 and a list of colors', async () => {
+  it('GET to /colors should return status 200 and a list of colors', async () => {
     // Act
     const response: AxiosResponse<Types.ColorList> = await axios({
       url: '/colors',
@@ -120,7 +120,7 @@ describe('ReqRes API', () => {
     }
   });
 
-  it('Get to /colors/id for an existing color should return status 200 and the color data', async () => {
+  it('GET to /colors/id for an existing color should return status 200 and the color data', async () => {
     // Act
     const response: AxiosResponse<Types.SingleColor> = await axios({
       url: '/colors/2',
@@ -142,7 +142,7 @@ describe('ReqRes API', () => {
     expect(responseColorData.pantone_value).to.equal('17-2031');
   });
 
-  it('Get to /colors/id for a color that does not exist should return status 404', async () => {
+  it('GET to /colors/id for a color that does not exist should return status 404', async () => {
     // Act
     const response: AxiosResponse<object> = await axios({
       url: '/colors/23',
@@ -243,7 +243,7 @@ describe('ReqRes API', () => {
 
   it('DELETE to /users/id for an existing user should return status 204', async () => {
     // Act
-    const response: AxiosResponse<Types.UpdateUserResponse> = await axios({
+    const response: AxiosResponse<void> = await axios({
       url: '/users/2',
       method: 'delete',
     });
