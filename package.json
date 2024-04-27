@@ -3,7 +3,6 @@
   "version": "1.0.0",
   "description": "API tests with Mocha and Chai",
   "main": "index.js",
-  "type": "module",
   "scripts": {
     "test": "ts-mocha test/**/*.spec.ts",
     "prepare": "husky install"
